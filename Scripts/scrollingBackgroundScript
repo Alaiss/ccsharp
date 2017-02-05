@@ -1,0 +1,44 @@
+using UnityEngine;
+using System.Collections;
+
+public class scroll : MonoBehaviour
+{
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+        MeshRenderer mr = GetComponent<MeshRenderer>(); //Represents Mesh Renderer. Store this object in the veriable.
+
+        Material mat = mr.materials[0]; // Get the first element of an array 'materials' in Mesh Renderer
+        //Material mat = mr.material; - would access the first element of an array (sort of short cut)
+
+        //mat.GetTextureOffset("_MainText"); -> main 'texture', most materials consist of only one.
+        Vector2 offset = mat.mainTextureOffset;
+
+        //offset.x += Time.time;
+        offset.x += Time.deltaTime/8;
+
+        mat.mainTextureOffset = offset;
+
+    }
+}
+/*public class scroll : MonoBehaviour {
+
+    public float speed = 0.5f;
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        Vector2 offset = new Vector2(Time.time * speed, 0);
+
+        GetComponent<Renderer>().material.mainTextureOffset = offset;
+	
+	}
+}*/
